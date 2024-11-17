@@ -5,7 +5,7 @@ const themeButton = document.querySelector("#theme-btn");
 const deleteButton = document.querySelector("#delete-btn");
 
 let userText = null;
-const API_KEY = "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"; // Paste your API key here
+const API_KEY ="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"; // Paste your API key here
 
 const loadDataFromLocalstorage = () => {
     // Load saved chats and theme from local storage and apply/add on the page
@@ -15,7 +15,7 @@ const loadDataFromLocalstorage = () => {
     themeButton.innerText = document.body.classList.contains("light-mode") ? "dark_mode" : "light_mode";
 
     const defaultText = `<div class="default-text">
-                            <h1>LINA GEMINIGPT</h1>
+                            <h1>ChatGPT Clone</h1>
                             <p>Start a conversation and explore the power of AI.<br> Your chat history will be displayed here.</p>
                         </div>`
 
@@ -36,14 +36,21 @@ const getChatResponse = async (incomingChatDiv) => {
     const pElement = document.createElement("p");
 
     // Define the properties and data for the API request
-    curl https://api.openai.com/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $OPENAI_API_KEY" \
-  -d '{
-     "model": "gpt-4o-mini",
-     "messages": [{"role": "user", "content": "Say this is a test!"}],
-     "temperature": 0.7
-   }'
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`
+        },
+        body: JSON.stringify({
+            model: "text-davinci-003",
+            prompt: userText,
+            max_tokens: 2048,
+            temperature: 0.2,
+            n: 1,
+            stop: null
+        })
+    }
 
     // Send POST request to API, get response and set the reponse as paragraph element text
     try {
