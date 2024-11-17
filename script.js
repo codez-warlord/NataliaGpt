@@ -1,4 +1,4 @@
-const API_ENDPOINT = '(link unavailable)';
+const API_ENDPOINT = 'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}';
 const API_KEY = 'AIzaSyAz7Cc22lLRcLSR2XSF7lMot_91WxlXfYw';
 
 // Set up API request headers
